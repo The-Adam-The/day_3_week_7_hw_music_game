@@ -3,7 +3,7 @@ import MusicList from '../components/MusicList'
 
 
 const MusicContainer = () => {
-  const [musicList, setMusicList] = useState([]);
+  const [songList, setSongList] = useState([]);
 
   useEffect(() => {
     getMusic();
@@ -12,12 +12,12 @@ const MusicContainer = () => {
   const getMusic = () => {
     fetch('https://itunes.apple.com/gb/rss/topsongs/limit=20/json')
     .then(results => results.json())
-    .then((data) => setMusicList(data['feed']['entry']));
-    console.log(musicList)
+    .then((data) => setSongList(data['feed']['entry']));
+    console.log(songList)
   }
   return (
     <>
-    <MusicList musicList={musicList}/>
+    <MusicList songList={songList}/>
     
     </>
   );

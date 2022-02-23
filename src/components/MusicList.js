@@ -1,10 +1,14 @@
 import React from 'react';
+import Song from './Song'
 
-const MusicList = () => {
+
+const MusicList = ({songList}) => {
     
-    const MusicNodes = musicList.map((song) => {
+    const MusicNodes = songList.map((song, index) => {
+        index += 1
         return (
-            <ListSong title={song["im:name"].label}/>
+            <Song position={index} songTitle={song['im:name'].label} songArtist={song['im:artist'].label} 
+            songImage={song['im:image'][0].label} genre= {song.category.attributes.term} key={song['id'].label} />
         );
     });
     return (
