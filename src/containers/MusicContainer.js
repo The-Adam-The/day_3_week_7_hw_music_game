@@ -1,4 +1,6 @@
 import React, {useState, useEeffect, useEffect} from 'react';
+import MusicList from '../components/MusicList'
+
 
 const MusicContainer = () => {
   const [musicList, setMusicList] = useState([]);
@@ -10,10 +12,14 @@ const MusicContainer = () => {
   const getMusic = () => {
     fetch('https://itunes.apple.com/gb/rss/topsongs/limit=20/json')
     .then(results => results.json())
-    .then(musicList => setMusicList(musicList));
+    .then((data) => setMusicList(data['feed']['entry']));
+    console.log(musicList)
   }
   return (
-      <h1>MusicContainer</h1>
+    <>
+    <MusicList musicList={musicList}/>
+    
+    </>
   );
 }
 
